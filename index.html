@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Blog - Güncel Teknoloji Haberleri</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body data-theme="romantic-red">
+    <!-- FAKE BLOG LANDING -->
+    <div class="fake-blog" id="fakeBlog">
+        <header class="blog-header">
+            <div class="blog-logo">💻 TechBlog</div>
+            <nav class="blog-nav">
+                <a href="#">Ana Sayfa</a>
+                <a href="#">Makaleler</a>
+                <a href="#">Hakkımda</a>
+                <a href="#">İletişim</a>
+            </nav>
+        </header>
+        <main class="blog-content">
+            <article class="blog-post featured">
+                <span class="blog-tag">ÖNE ÇIKAN</span>
+                <h1 class="blog-title">2026 Yılının En İyi Teknoloji Trendleri</h1>
+                <p class="blog-meta">📅 28 Ocak 2026 • ⏱️ 5 dk okuma</p>
+                <p class="blog-excerpt">Yapay zeka, blockchain ve daha fazlası... Bu yıl teknoloji dünyasında neler
+                    oluyor? En son gelişmeleri keşfedin.</p>
+                <button class="blog-read-more" id="revealBtn">Devamını Oku →</button>
+            </article>
+            <article class="blog-post">
+                <h2 class="blog-title-sm">Yeni iPhone Modeli Sızdırıldı</h2>
+                <p class="blog-meta">📅 27 Ocak 2026</p>
+            </article>
+            <article class="blog-post">
+                <h2 class="blog-title-sm">Windows 12 Ne Zaman Çıkacak?</h2>
+                <p class="blog-meta">📅 26 Ocak 2026</p>
+            </article>
+        </main>
+    </div>
+
+    <!-- PASSWORD MODAL -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-card">
+            <h2 class="password-title">Premium İçerik</h2>
+            <p class="password-subtitle">Devam etmek için erişim kodunu girin</p>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Erişim kodu">
+            <p class="password-error" id="passwordError">Geçersiz kod. Tekrar deneyin.</p>
+            <button class="password-submit" id="passwordSubmit">Devam Et</button>
+        </div>
+    </div>
+
+    <!-- REAL ROMANTIC CONTENT (Hidden initially) -->
+    <div class="romantic-content" id="romanticContent" style="display: none;">
+        <!-- Floating Hearts Background -->
+        <div class="hearts-container" id="heartsContainer"></div>
+
+        <!-- Sparkles -->
+        <div class="sparkles-container" id="sparklesContainer"></div>
+
+        <!-- Theme Selector -->
+        <div class="theme-selector">
+            <button class="theme-btn" data-theme="romantic-red" title="Romantik Kırmızı">
+                <span class="theme-color" style="background: linear-gradient(135deg, #ff4757, #ff6b81);"></span>
+            </button>
+            <button class="theme-btn" data-theme="pink-dream" title="Pembe Rüya">
+                <span class="theme-color" style="background: linear-gradient(135deg, #ff9ff3, #f368e0);"></span>
+            </button>
+            <button class="theme-btn" data-theme="purple-night" title="Mor Gece">
+                <span class="theme-color" style="background: linear-gradient(135deg, #a55eea, #8854d0);"></span>
+            </button>
+            <button class="theme-btn" data-theme="golden-sunset" title="Altın Günbatımı">
+                <span class="theme-color" style="background: linear-gradient(135deg, #f9ca24, #f0932b);"></span>
+            </button>
+        </div>
+
+        <!-- Main Container -->
+        <div class="container">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-decoration">💕</div>
+                <h1 class="title">Melih ❤️ Berin</h1>
+                <p class="subtitle" id="subtitle" contenteditable="true">Seninle geçirdiğim her an bir hazine...</p>
+                <div class="header-decoration">💕</div>
+            </header>
+
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📷</div>
+                    <p class="upload-text">Fotoğrafları buraya sürükle bırak</p>
+                    <p class="upload-subtext">veya tıklayarak seç</p>
+                    <input type="file" id="fileInput" multiple accept="image/*" hidden>
+                </div>
+            </section>
+
+            <!-- Gallery -->
+            <section class="gallery" id="gallery">
+                <!-- Photos will be added here dynamically -->
+            </section>
+
+            <!-- Love Message -->
+            <section class="love-message">
+                <div class="message-card">
+                    <div class="message-icon">💌</div>
+                    <p class="message-text" id="loveMessage" contenteditable="true">Seni seviyorum... 💕</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" id="lightboxClose">×</button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">❮</button>
+            <img src="" alt="Fotoğraf" class="lightbox-image" id="lightboxImage">
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">❯</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
