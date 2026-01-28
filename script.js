@@ -38,8 +38,8 @@ let currentPhotoIndex = 0;
 let isUploading = false;
 
 // ===== Passwords =====
-const FIRST_PASSWORD = '5525';
-const SECRET_PASSWORD = 'el patron imk';
+const FIRST_PASSWORD = '05052025';
+const SECRET_PASSWORD = 'berin';
 
 // ===== Initialize =====
 document.addEventListener('DOMContentLoaded', () => {
