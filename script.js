@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             passwordModal.classList.remove('active');
             document.title = '🔐 GİZLİ ARŞİV';
             secretArchive.style.display = 'block';
-            secretArchive.classList.add('revealing');
         } else {
             passwordError.classList.add('show');
             passwordInput.classList.add('error');
@@ -102,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Step 3: Secret Trigger → "Kimsin?" Modal
     if (secretTrigger) {
         secretTrigger.addEventListener('click', () => {
-            secretModal.classList.add('active');
+            secretModal.style.display = 'flex';
             secretInput.focus();
         });
     }
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkSecretPassword() {
         const inputValue = secretInput.value.toLowerCase().trim();
         if (inputValue === SECRET_PASSWORD) {
-            secretModal.classList.remove('active');
+            secretModal.style.display = 'none';
             secretArchive.style.display = 'none';
 
             // Show heart transition
