@@ -7,7 +7,7 @@
     <title>Tech Blog - Güncel Teknoloji Haberleri</title>
     <link rel="stylesheet" href="styles.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Outfit:wght@300;400;500;600&family=Creepster&display=swap"
         rel="stylesheet">
 </head>
 
@@ -43,7 +43,7 @@
         </main>
     </div>
 
-    <!-- PASSWORD MODAL -->
+    <!-- FIRST PASSWORD MODAL -->
     <div class="password-modal" id="passwordModal">
         <div class="password-card">
             <h2 class="password-title">Premium İçerik</h2>
@@ -52,6 +52,68 @@
             <p class="password-error" id="passwordError">Geçersiz kod. Tekrar deneyin.</p>
             <button class="password-submit" id="passwordSubmit">Devam Et</button>
         </div>
+    </div>
+
+    <!-- SECRET ARCHIVE (İMK'NIN GİZLİ YERİ) -->
+    <div class="secret-archive" id="secretArchive" style="display: none;">
+        <div class="archive-glitch-bg"></div>
+        <div class="archive-scanlines"></div>
+
+        <header class="archive-header">
+            <div class="archive-logo">🔐 GİZLİ ARŞİV</div>
+            <div class="archive-status">
+                <span class="status-dot"></span>
+                <span>ŞİFRELİ BAĞLANTI</span>
+            </div>
+        </header>
+
+        <main class="archive-content">
+            <div class="archive-title-container">
+                <h1 class="archive-title glitch" data-text="İMK'NIN GİZLİ YERİ">İMK'NIN GİZLİ YERİ</h1>
+                <p class="archive-subtitle">⚠️ YETKİSİZ ERİŞİM YASAKTIR ⚠️</p>
+            </div>
+
+            <div class="archive-files">
+                <div class="archive-file">
+                    <span class="file-icon">📁</span>
+                    <span class="file-name">gizli_dosyalar.enc</span>
+                    <span class="file-status">🔒 KİLİTLİ</span>
+                </div>
+                <div class="archive-file">
+                    <span class="file-icon">📁</span>
+                    <span class="file-name">ozel_anılar.enc</span>
+                    <span class="file-status">🔒 KİLİTLİ</span>
+                </div>
+                <div class="archive-file">
+                    <span class="file-icon">📁</span>
+                    <span class="file-name">???_galeri.enc</span>
+                    <span class="file-status">🔒 KİLİTLİ</span>
+                </div>
+            </div>
+
+            <p class="archive-hint">💡 İpucu: Gizli geçidi bulmak için karanlığa bak...</p>
+        </main>
+
+        <!-- Secret Dark Mode Button -->
+        <button class="secret-trigger" id="secretTrigger" title="???">
+            🌙
+        </button>
+    </div>
+
+    <!-- SECOND PASSWORD MODAL (Kimsin?) -->
+    <div class="secret-modal" id="secretModal">
+        <div class="secret-modal-card">
+            <div class="secret-modal-icon">👁️</div>
+            <h2 class="secret-modal-title">KİMSİN?</h2>
+            <input type="text" class="secret-modal-input" id="secretInput" placeholder="Kendini tanıt...">
+            <p class="secret-modal-error" id="secretError">Seni tanımıyorum...</p>
+            <button class="secret-modal-submit" id="secretSubmit">ONAYLA</button>
+        </div>
+    </div>
+
+    <!-- HEART TRANSITION -->
+    <div class="heart-transition" id="heartTransition">
+        <div class="mega-heart">❤️</div>
     </div>
 
     <!-- REAL ROMANTIC CONTENT (Hidden initially) -->

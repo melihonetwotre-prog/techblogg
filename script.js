@@ -37,23 +37,33 @@ let photos = [];
 let currentPhotoIndex = 0;
 let isUploading = false;
 
+// ===== Passwords =====
+const FIRST_PASSWORD = '5525';
+const SECRET_PASSWORD = 'el patron imk';
+
 // ===== Initialize =====
 document.addEventListener('DOMContentLoaded', () => {
     const fakeBlog = document.getElementById('fakeBlog');
-    const romanticContent = document.getElementById('romanticContent');
-    const revealBtn = document.getElementById('revealBtn');
     const passwordModal = document.getElementById('passwordModal');
     const passwordInput = document.getElementById('passwordInput');
     const passwordSubmit = document.getElementById('passwordSubmit');
     const passwordError = document.getElementById('passwordError');
+    const revealBtn = document.getElementById('revealBtn');
 
-    const SECRET_PASSWORD = '5525';
+    const secretArchive = document.getElementById('secretArchive');
+    const secretTrigger = document.getElementById('secretTrigger');
+    const secretModal = document.getElementById('secretModal');
+    const secretInput = document.getElementById('secretInput');
+    const secretSubmit = document.getElementById('secretSubmit');
+    const secretError = document.getElementById('secretError');
 
-    // Reveal button click - show password modal
+    const heartTransition = document.getElementById('heartTransition');
+    const romanticContent = document.getElementById('romanticContent');
+
+    // Step 1: Blog → Password Modal
     if (revealBtn) {
         revealBtn.addEventListener('click', () => {
             fakeBlog.classList.add('hiding');
-
             setTimeout(() => {
                 fakeBlog.style.display = 'none';
                 passwordModal.classList.add('active');
@@ -62,24 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Password submit
-    function checkPassword() {
-        if (passwordInput.value === SECRET_PASSWORD) {
+    // Step 2: First Password → Secret Archive
+    function checkFirstPassword() {
+        if (passwordInput.value === FIRST_PASSWORD) {
             passwordModal.classList.remove('active');
-            document.title = '💕 Melih ❤️ Berin';
-            romanticContent.style.display = 'block';
-
-            // Initialize romantic content
-            initTheme();
-            createFloatingHearts();
-            createSparkles();
-            initEventListeners();
-            loadPhotosFromFirebase();
+            document.title = '🔐 GİZLİ ARŞİV';
+            secretArchive.style.display = 'block';
+            secretArchive.classList.add('revealing');
         } else {
             passwordError.classList.add('show');
             passwordInput.classList.add('error');
             passwordInput.value = '';
-
             setTimeout(() => {
                 passwordError.classList.remove('show');
                 passwordInput.classList.remove('error');
@@ -88,19 +91,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (passwordSubmit) {
-        passwordSubmit.addEventListener('click', checkPassword);
+        passwordSubmit.addEventListener('click', checkFirstPassword);
     }
-
     if (passwordInput) {
         passwordInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') checkPassword();
+            if (e.key === 'Enter') checkFirstPassword();
+        });
+    }
+
+    // Step 3: Secret Trigger → "Kimsin?" Modal
+    if (secretTrigger) {
+        secretTrigger.addEventListener('click', () => {
+            secretModal.classList.add('active');
+            secretInput.focus();
+        });
+    }
+
+    // Step 4: Second Password → Heart Transition → Love Gallery
+    function checkSecretPassword() {
+        const inputValue = secretInput.value.toLowerCase().trim();
+        if (inputValue === SECRET_PASSWORD) {
+            secretModal.classList.remove('active');
+            secretArchive.style.display = 'none';
+
+            // Show heart transition
+            heartTransition.classList.add('active');
+
+            // After animation, show Love Gallery
+            setTimeout(() => {
+                heartTransition.classList.remove('active');
+                heartTransition.style.display = 'none';
+                document.title = '💕 Melih ❤️ Berin';
+                romanticContent.style.display = 'block';
+
+                // Initialize romantic content
+                initTheme();
+                createFloatingHearts();
+                createSparkles();
+                initEventListeners();
+                loadPhotosFromFirebase();
+            }, 2000);
+        } else {
+            secretError.classList.add('show');
+            secretInput.classList.add('error');
+            secretInput.value = '';
+            setTimeout(() => {
+                secretError.classList.remove('show');
+                secretInput.classList.remove('error');
+            }, 2000);
+        }
+    }
+
+    if (secretSubmit) {
+        secretSubmit.addEventListener('click', checkSecretPassword);
+    }
+    if (secretInput) {
+        secretInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkSecretPassword();
         });
     }
 });
 
 // ===== Firebase Functions =====
 function loadPhotosFromFirebase() {
-    // Real-time listener for photos
     db.collection('photos').orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
         photos = [];
         snapshot.forEach((doc) => {
@@ -140,16 +193,13 @@ async function uploadPhoto(file) {
     if (isUploading) return;
     isUploading = true;
 
-    // Show upload indicator
     const uploadText = uploadArea.querySelector('.upload-text');
     const originalText = uploadText.textContent;
     uploadText.textContent = 'Yükleniyor... ⏳';
 
     try {
-        // Upload to ImgBB
         const imageUrl = await uploadToImgBB(file);
 
-        // Save URL to Firestore
         await db.collection('photos').add({
             src: imageUrl,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
